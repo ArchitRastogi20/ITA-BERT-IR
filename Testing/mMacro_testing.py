@@ -20,6 +20,7 @@ from nltk.tokenize import word_tokenize
 
 # Download NLTK data files (if not already downloaded)
 nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab')
 
 # Set up logging to both console and file
 logger = logging.getLogger(__name__)
@@ -69,8 +70,8 @@ except Exception as e:
     sys.exit(1)
 
 # Initialize tokenizer and models
-base_model_name = 'dbmdz/bert-base-italian-xxl-uncased'  # Replace with the actual base model name
-finetuned_model_name = 'finetuned_model'  # Replace with your finetuned model path
+base_model_name = 'dbmdz/bert-base-italian-xxl-uncased'  
+finetuned_model_name = 'ArchitRastogi/bert-base-italian-embeddings'  
 
 try:
     logger.info("Loading tokenizer and models...")
@@ -458,7 +459,7 @@ for K in K_MRR_list:
     logger.info(f"MRR@{K}: {MRR_at_K_bm25[K]:.4f}")
 
 # Base Model Results
-logger.info("\nBase Model(dbmdz/bert-base-italian-xxl-uncased) Results:")
+logger.info(f"\n{base_model_name} Results:")
 for K in K_R_list:
     logger.info(f"R@{K}: {R_at_K_base[K]:.4f}")
 logger.info(f"Average Precision: {average_precision_base:.4f}")
